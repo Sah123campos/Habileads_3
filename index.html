@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HABILEADS - Sua Imobiliária de Confiança</title>
-    <link rel="icon" type="image/png" href="/logohabileads.png">
-    <link rel="shortcut icon" type="image/png" href="/logohabileads.png">
-    <link rel="apple-touch-icon" href="/logohabileads.png">
+    <link rel="icon" type="image/png" href="logohabileads.png">
+    <link rel="shortcut icon" type="image/png" href="logohabileads.png">
+    <link rel="apple-touch-icon" href="logohabileads.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="logohabileads.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logohabileads.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -931,52 +933,7 @@
                 </button>
                 <div class="properties-carousel-wrapper">
                     <div class="properties-carousel" id="properties-carousel">
-                        <div class="property-card">
-                    <div class="property-carousel" data-group="aptspazio">
-                        <div class="carousel-container" id="carousel-aptspazio">
-                            <!-- Slides serão inseridos via JavaScript -->
-                        </div>
-                        <div class="carousel-indicators" id="indicators-aptspazio">
-                            <!-- Indicadores serão inseridos via JavaScript -->
-                        </div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Spazio</h3>
-                        <p>3 quartos, 2 banheiros, 120m²</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="aptspazio" data-img="aptspazio1.jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casaembarept">
-                        <div class="carousel-container" id="carousel-casaembarept">
-                            <!-- Slides serão inseridos via JavaScript -->
-                        </div>
-                        <div class="carousel-indicators" id="indicators-casaembarept">
-                            <!-- Indicadores serão inseridos via JavaScript -->
-                        </div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Embare PT</h3>
-                        <p>4 quartos, 3 banheiros, 220m²</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casaembarept" data-img="casaembare1">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casaembare">
-                        <div class="carousel-container" id="carousel-casaembare">
-                            <!-- Slides serão inseridos via JavaScript -->
-                        </div>
-                        <div class="carousel-indicators" id="indicators-casaembare">
-                            <!-- Indicadores serão inseridos via JavaScript -->
-                        </div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Embare</h3>
-                        <p>2 quartos, 2 banheiros, 80m²</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casaembare" data-img="casaembare1.jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <!-- Novos Apartamentos -->
+                        <!-- Novos Apartamentos -->
                 <div class="property-card">
                     <div class="property-carousel" data-group="apcompleto">
                         <div class="carousel-container" id="carousel-apcompleto"></div>
@@ -1357,22 +1314,6 @@
         // Definir grupos de imagens
         const imageGroups = {
             // Imóveis existentes
-            aptspazio: [
-                'aptspazio1.jpeg', 'aptspazio2.jpeg', 'aptspazio3.jpeg', 
-                'aptspazio4.jpeg', 'aptspazio5.jpeg', 'aptspazio6.jpeg', 
-                'aptspazio7.jpeg', 'aptspazio8.jpeg', 'aptspazio9.jpeg', 
-                'aptspazio10.jpeg', 'aptspazio11.jpeg'
-            ],
-            casaembarept: [
-                'imagem1a.jpeg', 'casaembarept2.jpeg', 'casaembarept3.jpeg', 
-                'casaembarept4.jpeg', 'casaembarept5.jpeg', 'casaembarept6.jpeg', 
-                'casaembarept7.jpeg'
-            ],
-            casaembare: [
-                'casaembare1.jpeg', 'casaembare2.jpeg', 'casaembare3.jpeg', 
-                'casaembare4.jpeg', 'casaembare5.jpeg', 'casaembare6.jpeg', 
-                'casaembare7.jpeg'
-            ],
             // Novos apartamentos
             apcompleto: generateImageArrayWithPattern('Ap_completo', 15),
             apjardimgilbertoni: generateImageArrayWithPattern('Ap_JardimGilbertoni', 13),
