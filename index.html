@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HABILEADS - Sua Imobiliária de Confiança</title>
+    <link rel="icon" type="image/png" href="/logohabileads.png">
+    <link rel="shortcut icon" type="image/png" href="/logohabileads.png">
+    <link rel="apple-touch-icon" href="/logohabileads.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        :root {
+            --vermelho: #d11a21;
+            --azul: #0a2440;
+            --branco: #ffffff;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header e Navegação */
+        header {
+            background-color: var(--azul);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-placeholder {
+            display: flex;
+            align-items: center;
+            color: var(--branco);
+            font-weight: 800;
+            font-size: 28px;
+        }
+
+        .logo-placeholder .magnet {
+            margin-right: 10px;
+            color: var(--vermelho);
+            font-size: 32px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            color: var(--vermelho);
+        }
+
+        /* Menu Mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: var(--branco);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--branco);
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--vermelho);
+            color: var(--branco);
+            padding: 14px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #b0151c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--vermelho);
+            color: var(--vermelho);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--vermelho);
+            color: var(--branco);
+        }
+
+        /* Seções */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--azul);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Imóveis em Destaque */
+        .properties {
+            background-color: var(--branco);
+        }
+
+        .properties-grid {
+            position: relative;
+            width: 100%;
+            padding: 0 60px;
+        }
+
+        .properties-carousel-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .properties-carousel {
+            display: flex;
+            gap: 30px;
+            transition: transform 0.5s ease-in-out;
+            padding: 10px 0;
+            will-change: transform;
+        }
+
+        .property-card {
+            background-color: var(--branco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            flex: 0 0 320px;
+            min-width: 320px;
+            max-width: 320px;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Setas de navegação do carrossel */
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: var(--branco);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--azul);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-nav-btn:hover {
+            background-color: var(--vermelho);
+            color: var(--branco);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .carousel-nav-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-nav-btn.next {
+            right: 10px;
+        }
+
+        .carousel-nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .carousel-nav-btn:disabled:hover {
+            background-color: var(--branco);
+            color: var(--azul);
+            transform: translateY(-50%) scale(1);
+        }
+
+        /* Remover estilo de desabilitado para permitir loop infinito */
+        .carousel-nav-btn.prev,
+        .carousel-nav-btn.next {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .property-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Carrossel de Imagens */
+        .property-carousel {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background-color: #ddd;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .carousel-dot.active {
+            background-color: var(--vermelho);
+            width: 24px;
+            border-radius: 4px;
+            border-color: var(--vermelho);
+        }
+
+        .carousel-dot:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .property-info {
+            padding: 20px;
+        }
+
+        .property-info h3 {
+            color: var(--azul);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .property-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .price {
+            color: var(--vermelho);
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        /* Sobre */
+        .about {
+            background-color: #f9f9f9;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 8px;
+            background-image: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=696&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Conceito da Empresa */
+        .concept {
+            background-color: var(--azul);
+            color: var(--branco);
+        }
+
+        .concept .section-title h2 {
+            color: var(--branco);
+        }
+
+        .concept-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .magnet-icon {
+            font-size: 60px;
+            color: var(--vermelho);
+            margin-bottom: 30px;
+        }
+
+        .concept-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .concept-content p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .h-meaning {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .h-meaning h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: var(--vermelho);
+        }
+
+        /* Contato e Redes Sociais */
+        .contact {
+            background-color: var(--azul);
+            color: var(--branco);
+        }
+
+        .contact .section-title h2 {
+            color: var(--branco);
+        }
+
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .address {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .address i {
+            margin-right: 10px;
+            color: var(--vermelho);
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background-color: var(--vermelho);
+            color: var(--branco);
+            border-radius: 50%;
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+            outline: none;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            background-color: #b0151c;
+        }
+
+        .social-icon:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #071a2d;
+            color: var(--branco);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        /* Modal de Galeria - ESTILO CONSTRUTORA PEIXE */
+        .modal-fullscreen {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-fullscreen.open {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 90vw;
+            max-height: 70vh;
+            min-height: 0;
+            margin-bottom: 20px;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            background: #fff;
+            object-fit: contain;
+            animation: zoomIn 0.4s;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+            max-width: 90vw;
+            flex-shrink: 0;
+            justify-content: center;
+            height: 80px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+            border-color: var(--vermelho);
+        }
+
+        .thumbnail.active {
+            border-color: var(--vermelho);
+            box-shadow: 0 0 15px rgba(209, 26, 33, 0.5);
+        }
+
+        .gallery-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+            margin-top: 15px;
+        }
+
+        .gallery-prev,
+        .gallery-next {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--vermelho);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-prev:hover,
+        .gallery-next:hover {
+            background: #b0151c;
+            transform: scale(1.1);
+        }
+
+        .gallery-counter {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 32px;
+            right: 48px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.2s;
+            font-weight: bold;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .modal-close:hover {
+            color: #e25555;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                height: 250px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .social-media {
+                flex-wrap: wrap;
+            }
+
+            .carousel-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .properties-grid {
+                padding: 0 50px;
+            }
+
+            .carousel-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .carousel-nav-btn.prev {
+                left: 5px;
+            }
+
+            .carousel-nav-btn.next {
+                right: 5px;
+            }
+
+            .property-card {
+                flex: 0 0 280px;
+                min-width: 280px;
+                max-width: 280px;
+            }
+
+            .gallery-main {
+                max-height: 60vh;
+            }
+
+            .gallery-thumbnails {
+                max-width: 98vw;
+                gap: 8px;
+                height: 70px;
+            }
+            
+            .thumbnail {
+                width: 70px;
+                height: 52px;
+            }
+            
+            .gallery-nav {
+                gap: 15px;
+            }
+            
+            .gallery-prev,
+            .gallery-next {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .gallery-counter {
+                font-size: 14px;
+                min-width: 60px;
+            }
+            
+            .modal-close {
+                top: 16px;
+                right: 16px;
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-thumbnails {
+                gap: 5px;
+                height: 60px;
+            }
+            
+            .thumbnail {
+                width: 60px;
+                height: 45px;
+            }
+            
+            .gallery-prev,
+            .gallery-next {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+            
+            .gallery-counter {
+                font-size: 12px;
+                min-width: 50px;
+            }
+
+            .gallery-main {
+                max-height: 50vh;
+            }
+
+            .carousel-indicators {
+                bottom: 8px;
+                gap: 6px;
+            }
+
+            .carousel-dot {
+                width: 6px;
+                height: 6px;
+            }
+
+            .carousel-dot.active {
+                width: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header com logo e navegação -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo-placeholder">
+                        <img src="logohabileads.png" alt="HABILEADS" style="height: 50px; margin-right: 10px;">
+                        HABILEADS
+                    </div>
+                </div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#properties">Imóveis</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#concept">Conceito</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Transformando sonhos em endereços</h1>
+            <p>A HABILEADS atrai as melhores oportunidades do mercado imobiliário para você</p>
+            <a href="#properties" class="btn">Ver Imóveis</a>
+        </div>
+    </section>
+
+    <!-- Imóveis em Destaque -->
+    <section class="properties" id="properties">
+        <div class="container">
+            <div class="section-title">
+                <h2>Imóveis em Destaque</h2>
+                <p>Confira nossas melhores oportunidades do mercado</p>
+            </div>
+            <div class="properties-grid">
+                <button class="carousel-nav-btn prev" id="carousel-prev" aria-label="Anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="properties-carousel-wrapper">
+                    <div class="properties-carousel" id="properties-carousel">
+                        <div class="property-card">
+                    <div class="property-carousel" data-group="aptspazio">
+                        <div class="carousel-container" id="carousel-aptspazio">
+                            <!-- Slides serão inseridos via JavaScript -->
+                        </div>
+                        <div class="carousel-indicators" id="indicators-aptspazio">
+                            <!-- Indicadores serão inseridos via JavaScript -->
+                        </div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Spazio</h3>
+                        <p>3 quartos, 2 banheiros, 120m²</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="aptspazio" data-img="aptspazio1.jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casaembarept">
+                        <div class="carousel-container" id="carousel-casaembarept">
+                            <!-- Slides serão inseridos via JavaScript -->
+                        </div>
+                        <div class="carousel-indicators" id="indicators-casaembarept">
+                            <!-- Indicadores serão inseridos via JavaScript -->
+                        </div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Embare PT</h3>
+                        <p>4 quartos, 3 banheiros, 220m²</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casaembarept" data-img="casaembare1">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casaembare">
+                        <div class="carousel-container" id="carousel-casaembare">
+                            <!-- Slides serão inseridos via JavaScript -->
+                        </div>
+                        <div class="carousel-indicators" id="indicators-casaembare">
+                            <!-- Indicadores serão inseridos via JavaScript -->
+                        </div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Embare</h3>
+                        <p>2 quartos, 2 banheiros, 80m²</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casaembare" data-img="casaembare1.jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <!-- Novos Apartamentos -->
+                <div class="property-card">
+                    <div class="property-carousel" data-group="apcompleto">
+                        <div class="carousel-container" id="carousel-apcompleto"></div>
+                        <div class="carousel-indicators" id="indicators-apcompleto"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Completo</h3>
+                        <p>Apartamento completo e moderno</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="apcompleto" data-img="Ap_completo(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="apjardimgilbertoni">
+                        <div class="carousel-container" id="carousel-apjardimgilbertoni"></div>
+                        <div class="carousel-indicators" id="indicators-apjardimgilbertoni"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Jardim Gilbertoni</h3>
+                        <p>Apartamento em localização privilegiada</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="apjardimgilbertoni" data-img="Ap_JardimGilbertoni(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="aptorresitalia">
+                        <div class="carousel-container" id="carousel-aptorresitalia"></div>
+                        <div class="carousel-indicators" id="indicators-aptorresitalia"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Mobiliado Torres Itália</h3>
+                        <p>Apartamento mobiliado e pronto para morar</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="aptorresitalia" data-img="Ap_mobiliadoTorresItália(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="apartamentoamplo">
+                        <div class="carousel-container" id="carousel-apartamentoamplo"></div>
+                        <div class="carousel-indicators" id="indicators-apartamentoamplo"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Ample</h3>
+                        <p>Apartamento espaçoso e confortável</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentoamplo" data-img="Apartamento amplo(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="apartamentoflordeliz">
+                        <div class="carousel-container" id="carousel-apartamentoflordeliz"></div>
+                        <div class="carousel-indicators" id="indicators-apartamentoflordeliz"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Flor de Liz</h3>
+                        <p>Apartamento moderno e bem localizado</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentoflordeliz" data-img="Apartamento_FlordeLiz(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="apartamentovilanery">
+                        <div class="carousel-container" id="carousel-apartamentovilanery"></div>
+                        <div class="carousel-indicators" id="indicators-apartamentovilanery"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Vila Nery</h3>
+                        <p>Apartamento em condomínio fechado</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentovilanery" data-img="Apartamento_VilaNery(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="apartamentodasaraucarias">
+                        <div class="carousel-container" id="carousel-apartamentodasaraucarias"></div>
+                        <div class="carousel-indicators" id="indicators-apartamentodasaraucarias"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento das Araucárias</h3>
+                        <p>Apartamento com vista privilegiada</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentodasaraucarias" data-img="ApartamentodasAraucárias(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="apartamentojardimnovasantapaula">
+                        <div class="carousel-container" id="carousel-apartamentojardimnovasantapaula"></div>
+                        <div class="carousel-indicators" id="indicators-apartamentojardimnovasantapaula"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Jardim Nova Santa Paula</h3>
+                        <p>Apartamento em localização estratégica</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentojardimnovasantapaula" data-img="APARTAMENTOJARDIM NOVA SANTA PAULA(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="apartamentomobiliado">
+                        <div class="carousel-container" id="carousel-apartamentomobiliado"></div>
+                        <div class="carousel-indicators" id="indicators-apartamentomobiliado"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Mobiliado</h3>
+                        <p>Apartamento totalmente mobiliado</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentomobiliado" data-img="Apartamentomobiliado(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="apresidencialmonteathos">
+                        <div class="carousel-container" id="carousel-apresidencialmonteathos"></div>
+                        <div class="carousel-indicators" id="indicators-apresidencialmonteathos"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Apartamento Residencial Monte Athos</h3>
+                        <p>Apartamento em condomínio residencial</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="apresidencialmonteathos" data-img="ApResidencialMonteAthos(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <!-- Novas Casas -->
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casaaracy2">
+                        <div class="carousel-container" id="carousel-casaaracy2"></div>
+                        <div class="carousel-indicators" id="indicators-casaaracy2"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Aracy 2</h3>
+                        <p>Casa espaçosa e aconchegante</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casaaracy2" data-img="Casa_ARACY_2(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casacondominiofaixaazul">
+                        <div class="carousel-container" id="carousel-casacondominiofaixaazul"></div>
+                        <div class="carousel-indicators" id="indicators-casacondominiofaixaazul"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Condomínio Faixa Azul</h3>
+                        <p>Casa em condomínio fechado</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casacondominiofaixaazul" data-img="Casa_Condomínio_FaixaAzul(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casacondominiomontedasaraucarias">
+                        <div class="carousel-container" id="carousel-casacondominiomontedasaraucarias"></div>
+                        <div class="carousel-indicators" id="indicators-casacondominiomontedasaraucarias"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Condomínio Monte das Araucárias</h3>
+                        <p>Casa em condomínio de alto padrão</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casacondominiomontedasaraucarias" data-img="Casa_Condomínio_MontedasAraucárias(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casacondominioswisspark">
+                        <div class="carousel-container" id="carousel-casacondominioswisspark"></div>
+                        <div class="carousel-indicators" id="indicators-casacondominioswisspark"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Condomínio Swiss Park</h3>
+                        <p>Casa em condomínio de luxo</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casacondominioswisspark" data-img="Casa_Condomínio_Swiss_Park(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casacondominiovilleneuve">
+                        <div class="carousel-container" id="carousel-casacondominiovilleneuve"></div>
+                        <div class="carousel-indicators" id="indicators-casacondominiovilleneuve"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Condomínio Villeneuve</h3>
+                        <p>Casa em condomínio residencial</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casacondominiovilleneuve" data-img="Casa_CondomínioVilleneuve_I(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casadamha">
+                        <div class="carousel-container" id="carousel-casadamha"></div>
+                        <div class="carousel-indicators" id="indicators-casadamha"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Damha</h3>
+                        <p>Casa moderna e bem estruturada</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casadamha" data-img="Casa_Damha_I(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casajardimaraucaria">
+                        <div class="carousel-container" id="carousel-casajardimaraucaria"></div>
+                        <div class="carousel-indicators" id="indicators-casajardimaraucaria"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Jardim Araucária</h3>
+                        <p>Casa com área verde</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casajardimaraucaria" data-img="Casa_JardimAraucária(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casajardimipanema">
+                        <div class="carousel-container" id="carousel-casajardimipanema"></div>
+                        <div class="carousel-indicators" id="indicators-casajardimipanema"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Jardim Ipanema</h3>
+                        <p>Casa espaçosa e bem localizada</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casajardimipanema" data-img="Casa_JardimIpanema(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casajardimitamaraty">
+                        <div class="carousel-container" id="carousel-casajardimitamaraty"></div>
+                        <div class="carousel-indicators" id="indicators-casajardimitamaraty"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Jardim Itamaraty</h3>
+                        <p>Casa em bairro nobre</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casajardimitamaraty" data-img="Casa_JardimItamaraty(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casamoderna">
+                        <div class="carousel-container" id="carousel-casamoderna"></div>
+                        <div class="carousel-indicators" id="indicators-casamoderna"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Moderna</h3>
+                        <p>Casa com arquitetura contemporânea</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casamoderna" data-img="Casa_Moderna(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casamoradas">
+                        <div class="carousel-container" id="carousel-casamoradas"></div>
+                        <div class="carousel-indicators" id="indicators-casamoradas"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Moradas</h3>
+                        <p>Casa em condomínio residencial</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casamoradas" data-img="Casa_Moradas_I(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casaparquefehr">
+                        <div class="carousel-container" id="carousel-casaparquefehr"></div>
+                        <div class="carousel-indicators" id="indicators-casaparquefehr"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Parque Fehr</h3>
+                        <p>Casa em área verde e tranquila</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casaparquefehr" data-img="Casa_ParqueFehr(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="casaswisspark">
+                        <div class="carousel-container" id="carousel-casaswisspark"></div>
+                        <div class="carousel-indicators" id="indicators-casaswisspark"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Casa Swiss Park</h3>
+                        <p>Casa em condomínio de alto padrão</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="casaswisspark" data-img="Casa_SwissPark(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-carousel" data-group="sobradocondominioparquefaber">
+                        <div class="carousel-container" id="carousel-sobradocondominioparquefaber"></div>
+                        <div class="carousel-indicators" id="indicators-sobradocondominioparquefaber"></div>
+                    </div>
+                    <div class="property-info">
+                        <h3>Sobrado Condomínio Parque Faber</h3>
+                        <p>Sobrado em condomínio fechado</p>
+                        <button class="btn btn-secondary btn-fullscreen" data-group="sobradocondominioparquefaber" data-img="SOBRADO_CONDOMÍNIOPARQUEFABER_IV(1).jpeg">Ver Mais Imagens</button>
+                    </div>
+                </div>
+                    </div>
+                </div>
+                <button class="carousel-nav-btn next" id="carousel-next" aria-label="Próximo">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre a HABILEADS</h2>
+                <p>Conheça nossa história e valores</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Fundada em 2021, a HABILEADS surgiu com a missão de revolucionar o mercado imobiliário através de uma abordagem inovadora para captação de oportunidades. Em pouco tempo, nos tornamos referência no setor, unindo tecnologia, expertise e relacionamento humano.</p>
+                    <p>Nossa equipe é composta por corretores especializados e comprometidos em oferecer o melhor atendimento personalizado, entendendo suas necessidades e superando expectativas.</p>
+                    <p>Valorizamos a confiança que nossos clientes depositam em nosso trabalho e nos esforçamos para manter relacionamentos duradouros baseados na ética e na excelência de nossos serviços.</p>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conceito da Empresa -->
+    <section class="concept" id="concept">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nosso Conceito</h2>
+                <p>A arte de atrair oportunidades</p>
+            </div>
+            <div class="concept-content">
+                <i class="fas fa-magnet magnet-icon"></i>
+                <h3>O Poder da Atração</h3>
+                <p>Imagine uma empresa que transforma o conceito de captação de leads em algo verdadeiramente magnético. Essa é a HABILEADS, onde cada interação se torna uma oportunidade, e cada oportunidade se torna um sucesso.</p>
+                <p>O símbolo da nossa marca diz tudo. Um imã, representando a poderosa força de atração que exercemos sobre oportunidades valiosas. Não somos apenas especialistas em capturar leads, somos referência na arte de atrair os leads certos no momento certo.</p>
+                
+                <div class="h-meaning">
+                    <h4>A Essência do "H"</h4>
+                    <p>O "H" no nosso nome é mais do que apenas uma letra. Ele simboliza a nossa abordagem <strong>Hábil e Honesta</strong> para a captação de leads. Habilidade para identificar as melhores oportunidades e honestidade para construir relações transparentes e duradouras com nossos clientes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato e Redes Sociais -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+                <p>Estamos à disposição para atendê-lo</p>
+            </div>
+            <div class="contact-content">
+                <div class="address">
+                    <p><i class="fas fa-map-marker-alt"></i> R. Padre Teixeira, Centro, São Carlos, Brazil</p>
+                </div>
+                <div class="social-media">
+                    <a href="#" id="whatsapp-link" class="social-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" id="gmail-link" class="social-icon">
+                        <i class="far fa-envelope"></i>
+                    </a>
+                    <a href="#" id="instagram-link" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logohabileads.png" alt="HABILEADS" style="height: 40px; margin-right: 10px;">
+                    HABILEADS
+                </div>
+                <p>&copy; 2025 HABILEADS - Todos os direitos reservados</p>
+                <p class="footer-info">Desde 2021 transformando o mercado imobiliário com habilidade e honestidade</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para Galeria de Imagens -->
+    <div id="modal-fullscreen" class="modal-fullscreen">
+        <!-- Conteúdo será inserido via JavaScript -->
+    </div>
+
+    <script>
+        // Função para gerar array de imagens baseado no padrão
+        function generateImageArray(prefix, count, extension = 'jpeg') {
+            const images = [];
+            for (let i = 1; i <= count; i++) {
+                images.push(`${prefix}${i}.${extension}`);
+            }
+            return images;
+        }
+
+        // Função para gerar array de imagens com padrão (número)
+        function generateImageArrayWithPattern(prefix, count, extension = 'jpeg') {
+            const images = [];
+            for (let i = 1; i <= count; i++) {
+                images.push(`${prefix}(${i}).${extension}`);
+            }
+            return images;
+        }
+
+        // Definir grupos de imagens
+        const imageGroups = {
+            // Imóveis existentes
+            aptspazio: [
+                'aptspazio1.jpeg', 'aptspazio2.jpeg', 'aptspazio3.jpeg', 
+                'aptspazio4.jpeg', 'aptspazio5.jpeg', 'aptspazio6.jpeg', 
+                'aptspazio7.jpeg', 'aptspazio8.jpeg', 'aptspazio9.jpeg', 
+                'aptspazio10.jpeg', 'aptspazio11.jpeg'
+            ],
+            casaembarept: [
+                'imagem1a.jpeg', 'casaembarept2.jpeg', 'casaembarept3.jpeg', 
+                'casaembarept4.jpeg', 'casaembarept5.jpeg', 'casaembarept6.jpeg', 
+                'casaembarept7.jpeg'
+            ],
+            casaembare: [
+                'casaembare1.jpeg', 'casaembare2.jpeg', 'casaembare3.jpeg', 
+                'casaembare4.jpeg', 'casaembare5.jpeg', 'casaembare6.jpeg', 
+                'casaembare7.jpeg'
+            ],
+            // Novos apartamentos
+            apcompleto: generateImageArrayWithPattern('Ap_completo', 15),
+            apjardimgilbertoni: generateImageArrayWithPattern('Ap_JardimGilbertoni', 13),
+            aptorresitalia: generateImageArrayWithPattern('Ap_mobiliadoTorresItália', 8),
+            apartamentoamplo: generateImageArrayWithPattern('Apartamento amplo', 11),
+            apartamentoflordeliz: generateImageArrayWithPattern('Apartamento_FlordeLiz', 15),
+            apartamentovilanery: generateImageArrayWithPattern('Apartamento_VilaNery', 12),
+            apartamentodasaraucarias: generateImageArrayWithPattern('ApartamentodasAraucárias', 18),
+            apartamentojardimnovasantapaula: generateImageArrayWithPattern('APARTAMENTOJARDIM NOVA SANTA PAULA', 15),
+            apartamentomobiliado: generateImageArrayWithPattern('Apartamentomobiliado', 15),
+            apresidencialmonteathos: generateImageArrayWithPattern('ApResidencialMonteAthos', 6),
+            // Novas casas
+            casaaracy2: generateImageArrayWithPattern('Casa_ARACY_2', 7),
+            casacondominiofaixaazul: generateImageArrayWithPattern('Casa_Condomínio_FaixaAzul', 19),
+            casacondominiomontedasaraucarias: generateImageArrayWithPattern('Casa_Condomínio_MontedasAraucárias', 14),
+            casacondominioswisspark: generateImageArrayWithPattern('Casa_Condomínio_Swiss_Park', 20),
+            casacondominiovilleneuve: generateImageArrayWithPattern('Casa_CondomínioVilleneuve_I', 19),
+            casadamha: generateImageArrayWithPattern('Casa_Damha_I', 6),
+            casajardimaraucaria: generateImageArrayWithPattern('Casa_JardimAraucária', 9),
+            casajardimipanema: generateImageArrayWithPattern('Casa_JardimIpanema', 16),
+            casajardimitamaraty: generateImageArrayWithPattern('Casa_JardimItamaraty', 16),
+            casamoderna: generateImageArrayWithPattern('Casa_Moderna', 11),
+            casamoradas: generateImageArrayWithPattern('Casa_Moradas_I', 11),
+            casaparquefehr: generateImageArrayWithPattern('Casa_ParqueFehr', 15),
+            casaswisspark: generateImageArrayWithPattern('Casa_SwissPark', 10),
+            sobradocondominioparquefaber: generateImageArrayWithPattern('SOBRADO_CONDOMÍNIOPARQUEFABER_IV', 14)
+        };
+
+        let currentImageIndex = 0;
+        let currentGroup = null;
+        const carouselIntervals = {}; // Armazena os intervalos de cada carrossel
+
+        // Função para inicializar carrosséis
+        function initCarousels() {
+            Object.keys(imageGroups).forEach(group => {
+                const carousel = document.querySelector(`.property-carousel[data-group="${group}"]`);
+                if (carousel) {
+                    createCarousel(group);
+                    startCarousel(group);
+                }
+            });
+        }
+
+        // Função para inicializar carrossel horizontal de propriedades
+        function initPropertiesCarousel() {
+            const carousel = document.getElementById('properties-carousel');
+            const prevBtn = document.getElementById('carousel-prev');
+            const nextBtn = document.getElementById('carousel-next');
+            
+            if (!carousel || !prevBtn || !nextBtn) return;
+
+            const cardWidth = 320; // Largura do card
+            const gap = 30;
+            const scrollAmount = cardWidth + gap;
+            let currentPosition = 0;
+
+            function getMaxScroll() {
+                const wrapper = carousel.parentElement;
+                return carousel.scrollWidth - wrapper.offsetWidth;
+            }
+
+            function scrollCarousel(direction) {
+                const maxScroll = getMaxScroll();
+                let newPosition = 0;
+                
+                if (direction === 'next') {
+                    newPosition = currentPosition + scrollAmount;
+                    // Se passou do limite, volta para o início
+                    if (newPosition >= maxScroll) {
+                        newPosition = 0;
+                    }
+                } else {
+                    newPosition = currentPosition - scrollAmount;
+                    // Se passou do início, vai para o final
+                    if (newPosition < 0) {
+                        newPosition = maxScroll;
+                    }
+                }
+                
+                currentPosition = newPosition;
+                carousel.style.transform = `translateX(-${currentPosition}px)`;
+            }
+
+            prevBtn.addEventListener('click', () => scrollCarousel('prev'));
+            nextBtn.addEventListener('click', () => scrollCarousel('next'));
+
+            // Remover desabilitação dos botões para permitir loop infinito
+            prevBtn.disabled = false;
+            nextBtn.disabled = false;
+        }
+
+        // Função para criar o carrossel
+        function createCarousel(group) {
+            const images = imageGroups[group];
+            const container = document.getElementById(`carousel-${group}`);
+            const indicators = document.getElementById(`indicators-${group}`);
+            
+            if (!container || !indicators) return;
+
+            // Criar slides
+            container.innerHTML = images.map((img, index) => `
+                <div class="carousel-slide ${index === 0 ? 'active' : ''}" 
+                     style="background-image: url('${img}');" 
+                     data-index="${index}"></div>
+            `).join('');
+
+            // Criar indicadores
+            indicators.innerHTML = images.map((img, index) => `
+                <div class="carousel-dot ${index === 0 ? 'active' : ''}" 
+                     data-index="${index}"></div>
+            `).join('');
+
+            // Adicionar event listeners aos indicadores
+            indicators.querySelectorAll('.carousel-dot').forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    goToSlide(group, index, true); // true para reiniciar o carrossel
+                });
+            });
+
+            // Pausar carrossel ao passar o mouse
+            const carouselElement = document.querySelector(`.property-carousel[data-group="${group}"]`);
+            if (carouselElement) {
+                carouselElement.addEventListener('mouseenter', () => {
+                    stopCarousel(group);
+                });
+                carouselElement.addEventListener('mouseleave', () => {
+                    startCarousel(group);
+                });
+            }
+        }
+
+        // Função para ir para um slide específico
+        function goToSlide(group, index, restartCarousel = false) {
+            const images = imageGroups[group];
+            if (!images || index < 0 || index >= images.length) return;
+
+            const container = document.getElementById(`carousel-${group}`);
+            const indicators = document.getElementById(`indicators-${group}`);
+            
+            if (!container || !indicators) return;
+
+            // Atualizar slides
+            const slides = container.querySelectorAll('.carousel-slide');
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+
+            // Atualizar indicadores
+            const dots = indicators.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+
+            // Reiniciar o carrossel apenas se solicitado (quando clicado manualmente)
+            if (restartCarousel) {
+                stopCarousel(group);
+                startCarousel(group);
+            }
+        }
+
+        // Função para iniciar o carrossel automático
+        function startCarousel(group) {
+            stopCarousel(group); // Garantir que não há múltiplos intervalos
+
+            const images = imageGroups[group];
+            if (!images || images.length <= 1) return;
+
+            let currentIndex = 0;
+            const slides = document.querySelectorAll(`#carousel-${group} .carousel-slide`);
+            const dots = document.querySelectorAll(`#indicators-${group} .carousel-dot`);
+            
+            if (slides.length === 0) return;
+
+            // Encontrar o slide ativo atual
+            slides.forEach((slide, index) => {
+                if (slide.classList.contains('active')) {
+                    currentIndex = index;
+                }
+            });
+
+            carouselIntervals[group] = setInterval(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                goToSlide(group, currentIndex);
+            }, 3500); // Muda a cada 3.5 segundos
+        }
+
+        // Função para parar o carrossel
+        function stopCarousel(group) {
+            if (carouselIntervals[group]) {
+                clearInterval(carouselIntervals[group]);
+                delete carouselIntervals[group];
+            }
+        }
+
+        // Abrir modal ao clicar no botão "Ver Mais Imagens"
+        const fullscreenBtns = document.querySelectorAll('.btn-fullscreen');
+        fullscreenBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const group = this.getAttribute('data-group');
+                const clickedImg = this.getAttribute('data-img');
+                
+                currentGroup = group;
+                currentImageIndex = imageGroups[group].indexOf(clickedImg);
+                
+                // Criar galeria no modal
+                createGalleryModal(group);
+                document.getElementById('modal-fullscreen').classList.add('open');
+                document.body.classList.add('modal-open');
+            });
+        });
+
+        function createGalleryModal(group) {
+            const images = imageGroups[group];
+            const modal = document.getElementById('modal-fullscreen');
+            
+            modal.innerHTML = `
+                <span class="modal-close">&times;</span>
+                <div class="gallery-container">
+                    <div class="gallery-main">
+                        <img class="modal-img" src="${images[currentImageIndex]}" alt="">
+                    </div>
+                    <div class="gallery-thumbnails">
+                        ${images.map((img, index) => `
+                            <div class="thumbnail ${index === currentImageIndex ? 'active' : ''}" data-index="${index}">
+                                <img src="${img}" alt="">
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="gallery-prev" aria-label="Anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="gallery-counter">${currentImageIndex + 1} / ${images.length}</span>
+                        <button class="gallery-next" aria-label="Próximo">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            // Adicionar event listeners
+            const modalClose = modal.querySelector('.modal-close');
+            const thumbnails = modal.querySelectorAll('.thumbnail');
+            const prevBtn = modal.querySelector('.gallery-prev');
+            const nextBtn = modal.querySelector('.gallery-next');
+
+            modalClose.addEventListener('click', closeModal);
+            
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    showImage(index);
+                });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const newIndex = (currentImageIndex - 1 + images.length) % images.length;
+                showImage(newIndex);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const newIndex = (currentImageIndex + 1) % images.length;
+                showImage(newIndex);
+            });
+
+            // Navegação com teclado
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        function showImage(index) {
+            const images = imageGroups[currentGroup];
+            currentImageIndex = index;
+            
+            const modalImg = document.querySelector('.modal-img');
+            const counter = document.querySelector('.gallery-counter');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            modalImg.src = images[index];
+            counter.textContent = `${index + 1} / ${images.length}`;
+            
+            // Atualizar thumbnails ativos
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+
+        function handleKeyPress(e) {
+            if (!document.getElementById('modal-fullscreen').classList.contains('open')) return;
+            
+            const images = imageGroups[currentGroup];
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    const prevIndex = (currentImageIndex - 1 + images.length) % images.length;
+                    showImage(prevIndex);
+                    break;
+                case 'ArrowRight':
+                    const nextIndex = (currentImageIndex + 1) % images.length;
+                    showImage(nextIndex);
+                    break;
+                case 'Escape':
+                    closeModal();
+                    break;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal-fullscreen').classList.remove('open');
+            document.body.classList.remove('modal-open');
+            document.removeEventListener('keydown', handleKeyPress);
+        }
+
+        // Fechar modal ao clicar fora da imagem
+        document.getElementById('modal-fullscreen').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal-fullscreen')) {
+                closeModal();
+            }
+        });
+
+        // =============================================
+        // Código existente
+        // =============================================
+
+        // Função para detectar dispositivo e redirecionar para WhatsApp apropriado
+        function detectDeviceAndSetWhatsApp() {
+            const whatsappLink = document.getElementById('whatsapp-link');
+            const message = "Olá! Estou interessado(a) em um imóvel da HABILEADS e gostaria de mais informações.";
+            const phone = '5516997837861';
+            
+            // Verifica se é um dispositivo móvel
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            
+            whatsappLink.addEventListener('click', function(e) {
+                if (isMobile) {
+                    e.preventDefault();
+                    
+                    // Tenta abrir o app do WhatsApp
+                    let whatsappUrl = '';
+                    if (isAndroid) {
+                        whatsappUrl = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(message)}`;
+                    } else if (isIOS) {
+                        whatsappUrl = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(message)}`;
+                    }
+                    
+                    // Tenta abrir o app
+                    window.location.href = whatsappUrl;
+                    
+                    // Fallback: se o app não abrir em 2 segundos, redireciona para WhatsApp Web
+                    setTimeout(() => {
+                        window.location.href = `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+                    }, 2000);
+                } else {
+                    // Desktop - abre WhatsApp Web
+                    whatsappLink.href = `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+                    whatsappLink.setAttribute('target', '_blank');
+                }
+            });
+        }
+
+        // Função para configurar o link do Gmail
+        function setupGmailLink() {
+            const gmailLink = document.getElementById('gmail-link');
+            const email = 'habileads@gmail.com';
+            const subject = 'Contato via Site - HABILEADS';
+            const body = 'Olá, gostaria de mais informações sobre os imóveis da HABILEADS.';
+            
+            // Verifica se é um dispositivo móvel
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            
+            gmailLink.addEventListener('click', function(e) {
+                if (isMobile) {
+                    e.preventDefault();
+                    
+                    // Tenta abrir o app do Gmail
+                    let gmailUrl = '';
+                    if (isAndroid) {
+                        gmailUrl = `googlegmail://co?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    } else if (isIOS) {
+                        gmailUrl = `googlegmail://co?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    }
+                    
+                    // Tenta abrir o app
+                    window.location.href = gmailUrl;
+                    
+                    // Fallback: se o app não abrir em 2 segundos, redireciona para Gmail Web
+                    setTimeout(() => {
+                        window.location.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    }, 2000);
+                } else {
+                    // Desktop - abre Gmail Web
+                    gmailLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    gmailLink.setAttribute('target', '_blank');
+                }
+            });
+        }
+
+        // Função para configurar o link do Instagram
+        function setupInstagramLink() {
+            const instagramLink = document.getElementById('instagram-link');
+            
+            if (!instagramLink) return;
+            
+            // Verifica se é um dispositivo móvel
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            
+            instagramLink.addEventListener('click', function(e) {
+                if (isMobile) {
+                    e.preventDefault();
+                    
+                    // Tenta abrir o app do Instagram
+                    let instagramUrl = 'instagram://user?username=habileads';
+                    
+                    // Tenta abrir o app
+                    window.location.href = instagramUrl;
+                    
+                    // Fallback: se o app não abrir em 2 segundos, redireciona para Instagram Web
+                    setTimeout(() => {
+                        window.location.href = 'https://www.instagram.com/habileads/';
+                    }, 2000);
+                } else {
+                    // Desktop - abre Instagram Web
+                    e.preventDefault();
+                    window.open('https://www.instagram.com/habileads/', '_blank');
+                }
+            });
+        }
+
+        // Smooth scrolling para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (anchor.id !== 'whatsapp-link' && anchor.id !== 'gmail-link' && anchor.id !== 'instagram-link') {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+
+        // Menu mobile toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const nav = document.getElementById('nav');
+        
+        mobileMenu.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+
+        // Efeito de digitação no título principal
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            heroTitle.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    heroTitle.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 80);
+                }
+            };
+            
+            typeWriter();
+            
+            // Inicializar carrosséis
+            initCarousels();
+            
+            // Inicializar carrossel horizontal de propriedades
+            initPropertiesCarousel();
+            
+            // Configura o link do WhatsApp baseado no dispositivo
+            detectDeviceAndSetWhatsApp();
+            
+            // Configura o link do Gmail
+            setupGmailLink();
+            
+            // Configura o link do Instagram
+            setupInstagramLink();
+        });
+    </script>
+</body>
+</html>
