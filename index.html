@@ -229,7 +229,6 @@
         .properties-carousel {
             display: flex;
             gap: 30px;
-            transition: transform 0.5s ease-in-out;
             padding: 10px 0;
             will-change: transform;
             align-items: stretch;
@@ -269,7 +268,8 @@
             font-size: 20px;
             color: var(--azul);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 10;
+            z-index: 30;
+            pointer-events: auto;
             transition: all 0.3s ease;
         }
 
@@ -380,25 +380,28 @@
         }
 
         .property-info {
-            padding: 20px;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            min-height: 200px;
+            min-height: 140px;
         }
 
         .property-info h3 {
             color: var(--azul);
-            margin-bottom: 10px;
+            margin-bottom: 4px;
             font-weight: 700;
             flex-shrink: 0;
+            font-size: 0.85rem;
+            line-height: 1.2;
         }
 
         .property-info p {
             color: #666;
-            margin-bottom: 15px;
+            margin-bottom: 3px;
             font-weight: 400;
-            flex-grow: 1;
+            font-size: 0.75rem;
+            line-height: 1.4;
         }
 
         .property-info .btn {
@@ -407,11 +410,37 @@
             flex-shrink: 0;
         }
 
+        .property-info ul {
+            margin: 2px 0 0 14px !important;
+            flex-grow: 1;
+        }
+
+        .property-info li {
+            font-size: 0.73rem;
+            margin-bottom: 2px;
+            line-height: 1.3;
+            color: #666;
+            list-style: none;
+        }
+
+        .btn-fullscreen {
+            font-size: 0.8rem;
+            padding: 8px 20px !important;
+        }
+
         .price {
             color: var(--vermelho);
             font-weight: 800;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1rem;
+            margin-bottom: 6px;
+            flex-shrink: 0;
+        }
+
+        .detail-info {
+            font-size: 0.73rem;
+            color: #666;
+            margin-top: 4px;
+            flex-shrink: 0;
         }
 
         /* Sobre */
@@ -794,27 +823,64 @@
             }
 
             .properties-grid {
-                padding: 0 50px;
+                padding: 0 10px;
             }
 
-            .carousel-nav-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
+            .properties-carousel-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 10px 10px;
             }
 
-            .carousel-nav-btn.prev {
-                left: 5px;
+            .properties-carousel {
+                gap: 12px;
+                padding: 0;
+                scroll-snap-type: x mandatory;
+                scroll-behavior: smooth;
             }
 
-            .carousel-nav-btn.next {
-                right: 5px;
+            .properties-carousel::-webkit-scrollbar {
+                display: none;
             }
 
             .property-card {
-                flex: 0 0 280px;
-                min-width: 280px;
-                max-width: 280px;
+                flex: 0 0 100%;
+                min-width: 100%;
+                max-width: 100%;
+                scroll-snap-align: center;
+                margin: 0;
+            }
+
+            .property-info {
+                min-height: auto;
+            }
+
+            .property-info ul {
+                margin: 0 0 0 12px !important;
+            }
+
+            .property-info li {
+                font-size: 0.72rem;
+            }
+
+            .carousel-nav-btn {
+                display: flex;
+                opacity: 0.95;
+                background-color: rgba(255, 255, 255, 0.95);
+                color: var(--azul);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .carousel-nav-btn.prev {
+                left: 8px;
+            }
+
+            .carousel-nav-btn.next {
+                right: 8px;
+            }
+
+            .properties-carousel-wrapper {
+                padding: 0 40px 10px;
             }
 
             .gallery-main {
@@ -949,272 +1015,588 @@
                 </button>
                 <div class="properties-carousel-wrapper">
                     <div class="properties-carousel" id="properties-carousel">
-                        <!-- Novos Apartamentos -->
-                <div class="property-card">
-                    <div class="property-carousel" data-group="apcompleto">
-                        <div class="carousel-container" id="carousel-apcompleto"></div>
-                        <div class="carousel-indicators" id="indicators-apcompleto"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Completo</h3>
-                        <p>Apartamento completo e moderno</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="apcompleto" data-img="Ap_completo(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="apjardimgilbertoni">
-                        <div class="carousel-container" id="carousel-apjardimgilbertoni"></div>
-                        <div class="carousel-indicators" id="indicators-apjardimgilbertoni"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Jardim Gilbertoni</h3>
-                        <p>Apartamento em localização privilegiada</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="apjardimgilbertoni" data-img="Ap_JardimGilbertoni(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="aptorresitalia">
-                        <div class="carousel-container" id="carousel-aptorresitalia"></div>
-                        <div class="carousel-indicators" id="indicators-aptorresitalia"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Mobiliado Torres Itália</h3>
-                        <p>Apartamento mobiliado e pronto para morar</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="aptorresitalia" data-img="Ap_mobiliadoTorresItália(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="apartamentoamplo">
-                        <div class="carousel-container" id="carousel-apartamentoamplo"></div>
-                        <div class="carousel-indicators" id="indicators-apartamentoamplo"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Ample</h3>
-                        <p>Apartamento espaçoso e confortável</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentoamplo" data-img="Apartamento amplo(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="apartamentoflordeliz">
-                        <div class="carousel-container" id="carousel-apartamentoflordeliz"></div>
-                        <div class="carousel-indicators" id="indicators-apartamentoflordeliz"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Flor de Liz</h3>
-                        <p>Apartamento moderno e bem localizado</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentoflordeliz" data-img="Apartamento_FlordeLiz(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="apartamentovilanery">
-                        <div class="carousel-container" id="carousel-apartamentovilanery"></div>
-                        <div class="carousel-indicators" id="indicators-apartamentovilanery"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Vila Nery</h3>
-                        <p>Apartamento em condomínio fechado</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentovilanery" data-img="Apartamento_VilaNery(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="apartamentodasaraucarias">
-                        <div class="carousel-container" id="carousel-apartamentodasaraucarias"></div>
-                        <div class="carousel-indicators" id="indicators-apartamentodasaraucarias"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento das Araucárias</h3>
-                        <p>Apartamento com vista privilegiada</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentodasaraucarias" data-img="ApartamentodasAraucárias(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="apartamentojardimnovasantapaula">
-                        <div class="carousel-container" id="carousel-apartamentojardimnovasantapaula"></div>
-                        <div class="carousel-indicators" id="indicators-apartamentojardimnovasantapaula"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Jardim Nova Santa Paula</h3>
-                        <p>Apartamento em localização estratégica</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentojardimnovasantapaula" data-img="APARTAMENTOJARDIM NOVA SANTA PAULA(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="apartamentomobiliado">
-                        <div class="carousel-container" id="carousel-apartamentomobiliado"></div>
-                        <div class="carousel-indicators" id="indicators-apartamentomobiliado"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Mobiliado</h3>
-                        <p>Apartamento totalmente mobiliado</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="apartamentomobiliado" data-img="Apartamentomobiliado(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="apresidencialmonteathos">
-                        <div class="carousel-container" id="carousel-apresidencialmonteathos"></div>
-                        <div class="carousel-indicators" id="indicators-apresidencialmonteathos"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Apartamento Residencial Monte Athos</h3>
-                        <p>Apartamento em condomínio residencial</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="apresidencialmonteathos" data-img="ApResidencialMonteAthos(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <!-- Novas Casas -->
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casaaracy2">
-                        <div class="carousel-container" id="carousel-casaaracy2"></div>
-                        <div class="carousel-indicators" id="indicators-casaaracy2"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Aracy 2</h3>
-                        <p>Casa espaçosa e aconchegante</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casaaracy2" data-img="Casa_ARACY_2(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casacondominiofaixaazul">
-                        <div class="carousel-container" id="carousel-casacondominiofaixaazul"></div>
-                        <div class="carousel-indicators" id="indicators-casacondominiofaixaazul"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Condomínio Faixa Azul</h3>
-                        <p>Casa em condomínio fechado</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casacondominiofaixaazul" data-img="Casa_Condomínio_FaixaAzul(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casacondominiomontedasaraucarias">
-                        <div class="carousel-container" id="carousel-casacondominiomontedasaraucarias"></div>
-                        <div class="carousel-indicators" id="indicators-casacondominiomontedasaraucarias"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Condomínio Monte das Araucárias</h3>
-                        <p>Casa em condomínio de alto padrão</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casacondominiomontedasaraucarias" data-img="Casa_Condomínio_MontedasAraucárias(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casacondominioswisspark">
-                        <div class="carousel-container" id="carousel-casacondominioswisspark"></div>
-                        <div class="carousel-indicators" id="indicators-casacondominioswisspark"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Condomínio Swiss Park</h3>
-                        <p>Casa em condomínio de luxo</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casacondominioswisspark" data-img="Casa_Condomínio_Swiss_Park(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casacondominiovilleneuve">
-                        <div class="carousel-container" id="carousel-casacondominiovilleneuve"></div>
-                        <div class="carousel-indicators" id="indicators-casacondominiovilleneuve"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Condomínio Villeneuve</h3>
-                        <p>Casa em condomínio residencial</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casacondominiovilleneuve" data-img="Casa_CondomínioVilleneuve_I(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casadamha">
-                        <div class="carousel-container" id="carousel-casadamha"></div>
-                        <div class="carousel-indicators" id="indicators-casadamha"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Damha</h3>
-                        <p>Casa moderna e bem estruturada</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casadamha" data-img="Casa_Damha_I(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casajardimaraucaria">
-                        <div class="carousel-container" id="carousel-casajardimaraucaria"></div>
-                        <div class="carousel-indicators" id="indicators-casajardimaraucaria"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Jardim Araucária</h3>
-                        <p>Casa com área verde</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casajardimaraucaria" data-img="Casa_JardimAraucária(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casajardimipanema">
-                        <div class="carousel-container" id="carousel-casajardimipanema"></div>
-                        <div class="carousel-indicators" id="indicators-casajardimipanema"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Jardim Ipanema</h3>
-                        <p>Casa espaçosa e bem localizada</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casajardimipanema" data-img="Casa_JardimIpanema(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casajardimitamaraty">
-                        <div class="carousel-container" id="carousel-casajardimitamaraty"></div>
-                        <div class="carousel-indicators" id="indicators-casajardimitamaraty"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Jardim Itamaraty</h3>
-                        <p>Casa em bairro nobre</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casajardimitamaraty" data-img="Casa_JardimItamaraty(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casamoderna">
-                        <div class="carousel-container" id="carousel-casamoderna"></div>
-                        <div class="carousel-indicators" id="indicators-casamoderna"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Moderna</h3>
-                        <p>Casa com arquitetura contemporânea</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casamoderna" data-img="Casa_Moderna(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casamoradas">
-                        <div class="carousel-container" id="carousel-casamoradas"></div>
-                        <div class="carousel-indicators" id="indicators-casamoradas"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Moradas</h3>
-                        <p>Casa em condomínio residencial</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casamoradas" data-img="Casa_Moradas_I(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casaparquefehr">
-                        <div class="carousel-container" id="carousel-casaparquefehr"></div>
-                        <div class="carousel-indicators" id="indicators-casaparquefehr"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Parque Fehr</h3>
-                        <p>Casa em área verde e tranquila</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casaparquefehr" data-img="Casa_ParqueFehr(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="casaswisspark">
-                        <div class="carousel-container" id="carousel-casaswisspark"></div>
-                        <div class="carousel-indicators" id="indicators-casaswisspark"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Casa Swiss Park</h3>
-                        <p>Casa em condomínio de alto padrão</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="casaswisspark" data-img="Casa_SwissPark(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
-                <div class="property-card">
-                    <div class="property-carousel" data-group="sobradocondominioparquefaber">
-                        <div class="carousel-container" id="carousel-sobradocondominioparquefaber"></div>
-                        <div class="carousel-indicators" id="indicators-sobradocondominioparquefaber"></div>
-                    </div>
-                    <div class="property-info">
-                        <h3>Sobrado Condomínio Parque Faber</h3>
-                        <p>Sobrado em condomínio fechado</p>
-                        <button class="btn btn-secondary btn-fullscreen" data-group="sobradocondominioparquefaber" data-img="SOBRADO_CONDOMÍNIOPARQUEFABER_IV(1).jpeg">Ver Mais Imagens</button>
-                    </div>
-                </div>
+                        <!-- APARTAMENTOS -->
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="apartamentojardimnovasantapaula">
+                                <div class="carousel-container" id="carousel-apartamentojardimnovasantapaula"></div>
+                                <div class="carousel-indicators" id="indicators-apartamentojardimnovasantapaula"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>APARTAMENTO À VENDA – JARDIM NOVA SANTA PAULA</h3>
+                                <div class="price">R$ 260.000,00</div>
+                                <p>COD: 158</p>
+                                <ul>
+                                    <li>✅ 63m² de área privativa</li>
+                                    <li>🛏️ 3 dormitórios (1 suíte)</li>
+                                    <li>🛋️ Sala de estar e jantar</li>
+                                    <li>🍳 Cozinha funcional</li>
+                                    <li>🚿 Banheiro social</li>
+                                    <li>🧺 Lavanderia</li>
+                                    <li>🚗 1 vaga de garagem</li>
+                                    <li>📍 Perto de escolas, farmácias e mercado</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="apartamentojardimnovasantapaula" data-img="APARTAMENTOJARDIM NOVA SANTA PAULA(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="apartamentoflordeliz">
+                                <div class="carousel-container" id="carousel-apartamentoflordeliz"></div>
+                                <div class="carousel-indicators" id="indicators-apartamentoflordeliz"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>APARTAMENTO TÉRREO – FLOR DE LIZ</h3>
+                                <div class="price">R$ 360.000,00</div>
+                                <p>COD: 191</p>
+                                <ul>
+                                    <li>✅ 2 dormitórios</li>
+                                    <li>🛋️ Sala de estar aconchegante</li>
+                                    <li>🍳 Cozinha funcional</li>
+                                    <li>🌿 Térreo com quintal enorme</li>
+                                    <li>🧺 Lavanderia</li>
+                                    <li>🛡️ Condomínio com segurança</li>
+                                    <li>🐾 Perfeito para pets</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="apartamentoflordeliz" data-img="Apartamento_FlordeLiz(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="apartamentodasaraucarias">
+                                <div class="carousel-container" id="carousel-apartamentodasaraucarias"></div>
+                                <div class="carousel-indicators" id="indicators-apartamentodasaraucarias"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>APARTAMENTO BOSQUE DAS ARAUCÁRIAS – JARDIM ALVORADA</h3>
+                                <div class="price">R$ 380.000,00</div>
+                                <p>COD: 232</p>
+                                <ul>
+                                    <li>✅ 54m² bem distribuídos</li>
+                                    <li>🛏️ 2 dormitórios (1 suíte)</li>
+                                    <li>🚿 2 banheiros com box</li>
+                                    <li>🍳 Cozinha com armários planejados</li>
+                                    <li>🧺 Lavanderia com planejados</li>
+                                    <li>🖥️ Espaço ideal para home office</li>
+                                    <li>🪞 Banheiros planejados</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="apartamentodasaraucarias" data-img="ApartamentodasAraucárias(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="apjardimgilbertoni">
+                                <div class="carousel-container" id="carousel-apjardimgilbertoni"></div>
+                                <div class="carousel-indicators" id="indicators-apjardimgilbertoni"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>APARTAMENTO À VENDA – JARDIM GILBERTONI</h3>
+                                <div class="price">R$ 430.000,00</div>
+                                <p>COD: 173</p>
+                                <ul>
+                                    <li>✅ 80m² bem aproveitados</li>
+                                    <li>🛏️ 3 dormitórios (1 suíte)</li>
+                                    <li>🍳 Cozinha ampla</li>
+                                    <li>🛋️ Sala de estar aconchegante</li>
+                                    <li>🌅 Varanda</li>
+                                    <li>🚗 2 vagas de garagem</li>
+                                    <li>☀️ Ótima iluminação natural</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="apjardimgilbertoni" data-img="Ap_JardimGilbertoni(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="aptorresitalia">
+                                <div class="carousel-container" id="carousel-aptorresitalia"></div>
+                                <div class="carousel-indicators" id="indicators-aptorresitalia"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>APARTAMENTO MOBILIADO – TORRES ITÁLIA</h3>
+                                <div class="price">R$ 530.000,00</div>
+                                <p>COD: 224</p>
+                                <ul>
+                                    <li>✅ 3 dormitórios</li>
+                                    <li>🛋️ Sala de estar aconchegante</li>
+                                    <li>🍳 Cozinha completa com armários</li>
+                                    <li>🌅 Varanda com vista panorâmica</li>
+                                    <li>🪑 Mobiliado – pronto pra morar!</li>
+                                    <li>🚗 1 vaga de garagem coberta</li>
+                                    <li>🏊 Piscina e espaço gourmet</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="aptorresitalia" data-img="Ap_mobiliadoTorresItália(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="apartamentovilanery">
+                                <div class="carousel-container" id="carousel-apartamentovilanery"></div>
+                                <div class="carousel-indicators" id="indicators-apartamentovilanery"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>APARTAMENTO MOBILIADO – VILA NERY</h3>
+                                <div class="price">R$ 470.000,00</div>
+                                <p>COD: 212</p>
+                                <ul>
+                                    <li>✅ 2 dormitórios com armários planejados</li>
+                                    <li>🛋️ Sala de TV e jantar integradas</li>
+                                    <li>🍳 Cozinha ampla com armários</li>
+                                    <li>🚿 Banheiros modernos</li>
+                                    <li>🚗 1 vaga coberta no subsolo</li>
+                                    <li>✨ Acabamento de qualidade</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="apartamentovilanery" data-img="Apartamento_VilaNery(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="apartamentoamplo">
+                                <div class="carousel-container" id="carousel-apartamentoamplo"></div>
+                                <div class="carousel-indicators" id="indicators-apartamentoamplo"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>SOBRADO NO JARDIM BICÃO</h3>
+                                <div class="price">R$ 690.000,00</div>
+                                <p>COD: 196</p>
+                                <ul>
+                                    <li>✅ 3 dormitórios (1 suíte com banheira)</li>
+                                    <li>🛋️ Sala ampla e iluminada</li>
+                                    <li>🌿 Jardim de inverno</li>
+                                    <li>🍳 Cozinha integrada à copa</li>
+                                    <li>🚻 Lavabo moderno</li>
+                                    <li>🍖 Área gourmet com churrasqueira</li>
+                                    <li>⚡ Instalação elétrica de primeira</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="apartamentoamplo" data-img="Apartamento amplo(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="apresidencialmonteathos">
+                                <div class="carousel-container" id="carousel-apresidencialmonteathos"></div>
+                                <div class="carousel-indicators" id="indicators-apresidencialmonteathos"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>APTO – Res. Monte Athos</h3>
+                                <div class="price">R$ 180.000,00</div>
+                                <p>COD: 226</p>
+                                <ul>
+                                    <li>✅ 2 dormitórios com piso laminado</li>
+                                    <li>🛋️ Sala ampla com sanca de gesso</li>
+                                    <li>🍳 Cozinha com bancada e armário novos</li>
+                                    <li>🚿 Banheiro com box, armário e espelho</li>
+                                    <li>💡 Iluminação 100% em LED</li>
+                                    <li>🏦 Aceita financiamento</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="apresidencialmonteathos" data-img="ApResidencialMonteAthos(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <!-- CASAS -->
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="casajardimaraucaria">
+                                <div class="carousel-container" id="carousel-casajardimaraucaria"></div>
+                                <div class="carousel-indicators" id="indicators-casajardimaraucaria"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa – Jd. Araucária</h3>
+                                <div class="price">R$ 277.000,00</div>
+                                <p>COD: 123</p>
+                                <ul>
+                                    <li>✅ 2 dormitórios bem distribuídos</li>
+                                    <li>🛋️ Sala de estar aconchegante</li>
+                                    <li>🍳 Cozinha planejada</li>
+                                    <li>🚗 2 vagas de garagem</li>
+                                    <li>🧺 Lavanderia prática</li>
+                                    <li>📍 Bairro tranquilo e valorizado</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="casajardimaraucaria" data-img="Casa_JardimAraucária(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="casaaracy2">
+                                <div class="carousel-container" id="carousel-casaaracy2"></div>
+                                <div class="carousel-indicators" id="indicators-casaaracy2"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa – ARACY 2</h3>
+                                <div class="price">R$ 215.000,00</div>
+                                <p>COD: 186</p>
+                                <ul>
+                                    <li>✅ 2 dormitórios</li>
+                                    <li>🚿 2 banheiros</li>
+                                    <li>🛋️ Sala ampla</li>
+                                    <li>🍳 Cozinha funcional</li>
+                                    <li>🧺 Lavanderia</li>
+                                    <li>🚗 Garagem coberta</li>
+                                    <li>📍 Em frente à escola e creche</li>
+                                    <li>📑 Documentação regularizada</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="casaaracy2" data-img="Casa_ARACY_2(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="casajardimipanema">
+                                <div class="carousel-container" id="carousel-casajardimipanema"></div>
+                                <div class="carousel-indicators" id="indicators-casajardimipanema"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa – Jd. Ipanema</h3>
+                                <div class="price">R$ 590.000,00</div>
+                                <p>COD: 01</p>
+                                <ul>
+                                    <li>✅ 2 dormitórios (1 suíte com closet)</li>
+                                    <li>🍳 Cozinha planejada</li>
+                                    <li>🌳 Quintal espaçoso</li>
+                                    <li>🚗 2 vagas cobertas</li>
+                                    <li>✨ Pronta pra morar</li>
+                                    <li>📍 Bairro tranquilo e valorizado</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="casajardimipanema" data-img="Casa_JardimIpanema(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="casajardimitamaraty">
+                                <div class="carousel-container" id="carousel-casajardimitamaraty"></div>
+                                <div class="carousel-indicators" id="indicators-casajardimitamaraty"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa – Jd. Itamaraty</h3>
+                                <div class="price">R$ 680.000,00</div>
+                                <p>COD: 230</p>
+                                <ul>
+                                    <li>✅ 3 dormitórios (1 suíte)</li>
+                                    <li>🛋️ Sala de estar e jantar</li>
+                                    <li>🍳 Cozinha ampla e funcional</li>
+                                    <li>🍖 Área gourmet com churrasqueira</li>
+                                    <li>🏊 Piscina</li>
+                                    <li>📐 250m² terreno | 200m² const.</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="casajardimitamaraty" data-img="Casa_JardimItamaraty(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="casaparquefehr">
+                                <div class="carousel-container" id="carousel-casaparquefehr"></div>
+                                <div class="carousel-indicators" id="indicators-casaparquefehr"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa – Parque Fehr</h3>
+                                <div class="price">R$ 848.000,00</div>
+                                <p>COD: 210</p>
+                                <ul>
+                                    <li>✅ 3 dormitórios (1 suíte master)</li>
+                                    <li>🛋️ Sala 3 ambientes</li>
+                                    <li>🖥️ Escritório</li>
+                                    <li>🍳 Cozinha planejada</li>
+                                    <li>🚗 3 vagas cobertas</li>
+                                    <li>🏊 Piscina com aquecimento solar</li>
+                                    <li>🍖 Churrasqueira e forno a lenha</li>
+                                    <li>📐 199m² const. | 250m² terreno</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="casaparquefehr" data-img="Casa_ParqueFehr(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="casamoderna">
+                                <div class="carousel-container" id="carousel-casamoderna"></div>
+                                <div class="carousel-indicators" id="indicators-casamoderna"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa Moderna</h3>
+                                <div class="price">R$ 1.250.000,00</div>
+                                <p>COD: 203</p>
+                                <ul>
+                                    <li>✅ 3 suítes (master com planejados)</li>
+                                    <li>🍳 Cozinha gourmet equipada</li>
+                                    <li>🚿 Banheiros completos</li>
+                                    <li>🌳 Quintal com jardinagem pronta</li>
+                                    <li>💡 Iluminação completa</li>
+                                    <li>🚪 Portas anti-impacto</li>
+                                    <li>📐 153m² const. | 240m² terreno</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="casamoderna" data-img="Casa_Moderna(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="casadamha">
+                                <div class="carousel-container" id="carousel-casadamha"></div>
+                                <div class="carousel-indicators" id="indicators-casadamha"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa – Damha I</h3>
+                                <div class="price">R$ 1.490.000,00</div>
+                                <p>COD: 229</p>
+                                <ul>
+                                    <li>✅ 3 dormitórios (2 suítes)</li>
+                                    <li>🛋️ Sala ampla e integrada</li>
+                                    <li>🍖 Área gourmet com churrasqueira</li>
+                                    <li>🏊 Piscina privativa</li>
+                                    <li>🌅 Varanda com vista livre</li>
+                                    <li>📐 220m² const. | 270m² terreno</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="casadamha" data-img="Casa_Damha_I(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="casaswisspark">
+                                <div class="carousel-container" id="carousel-casaswisspark"></div>
+                                <div class="carousel-indicators" id="indicators-casaswisspark"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Casa – Swiss Park</h3>
+                                <div class="price">R$ 1.970.000,00</div>
+                                <p>COD: 233</p>
+                                <ul>
+                                    <li>✅ 3 suítes espaçosas</li>
+                                    <li>🍳 Cozinha funcional e moderna</li>
+                                    <li>🛋️ 3 salas (estar, jantar e TV)</li>
+                                    <li>🍖 Área de churrasco</li>
+                                    <li>🚗 6 vagas (2 cobertas)</li>
+                                    <li>🏊 Piscina no condomínio</li>
+                                    <li>🎾 Quadra de tênis</li>
+                                    <li>📐 267m² const. | 490m² terreno</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="casaswisspark" data-img="Casa_SwissPark(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <!-- SOBRADOS -->
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="sobradocondominioparquefaber">
+                                <div class="carousel-container" id="carousel-sobradocondominioparquefaber"></div>
+                                <div class="carousel-indicators" id="indicators-sobradocondominioparquefaber"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>Sobrado – Cond. Parque Faber IV</h3>
+                                <div class="price">Consulte</div>
+                                <p>COD: 189</p>
+                                <ul>
+                                    <li>✅ 3 suítes</li>
+                                    <li>🏗️ Pé direito duplo</li>
+                                    <li>🛋️ Sala de TV + jantar</li>
+                                    <li>🖥️ Escritório (ou 4º dorm.)</li>
+                                    <li>🚻 Lavabo interno e externo</li>
+                                    <li>🏊 Piscina privativa</li>
+                                    <li>📐 276m² const. | 396m² terreno</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="sobradocondominioparquefaber" data-img="SOBRADO_CONDOMÍNIOPARQUEFABER_IV(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="recantosabia">
+                                <div class="carousel-container" id="carousel-recantosabia"></div>
+                                <div class="carousel-indicators" id="indicators-recantosabia"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>RECANTO DO SABIÁ | OPORTUNIDADE</h3>
+                                <div class="price">R$ 235.000,00</div>
+                                <ul>
+                                    <li>✅ 2 lotes de 10x25 cada</li>
+                                    <li>📑 Lotes quitados</li>
+                                    <li>📍 Excelente localização</li>
+                                    <li>🏗️ Ideal p/ construção alto padrão</li>
+                                    <li>💰 Venda juntos ou separados</li>
+                                </ul>
+                                <div class="detail-info">📞 Entre em contato para mais informações!</div>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="recantosabia" data-img="RecantoSabia(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="parque_sabara">
+                                <div class="carousel-container" id="carousel-parque_sabara"></div>
+                                <div class="carousel-indicators" id="indicators-parque_sabara"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>OPORTUNIDADE NO SABARÁ</h3>
+                                <div class="price">R$ 320.000,00</div>
+                                <ul>
+                                    <li>✅ 2 dormitórios</li>
+                                    <li>🪟 Sacada envidraçada</li>
+                                    <li>🪑 Móveis planejados</li>
+                                    <li>🚗 1 vaga de garagem</li>
+                                    <li>🏊 Condomínio clube</li>
+                                    <li>🏦 Aceita financiamento</li>
+                                </ul>
+                                <div class="detail-info">📞 Entre em contato para mais informações!</div>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="parque_sabara" data-img="Parque_Sabara(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="santa_felicia">
+                                <div class="carousel-container" id="carousel-santa_felicia"></div>
+                                <div class="carousel-indicators" id="indicators-santa_felicia"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>CASA NO SANTA FELÍCIA</h3>
+                                <div class="price">R$ 900.000,00</div>
+                                <p>COD: 192</p>
+                                <ul>
+                                    <li>✅ 2 dormitórios (1 suíte)</li>
+                                    <li>🏢 2 salões comerciais</li>
+                                    <li>🌳 Quintal e churrasqueira</li>
+                                    <li>📐 220m² de construção</li>
+                                    <li>🚗 Garagem para 5 carros</li>
+                                    <li>💰 Possibilidade de renda extra</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="santa_felicia" data-img="Santa_Felicia(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="pacaembu">
+                                <div class="carousel-container" id="carousel-pacaembu"></div>
+                                <div class="carousel-indicators" id="indicators-pacaembu"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>GALPÃO NO JARDIM PACAEMBU</h3>
+                                <div class="price">R$ 490.000,00</div>
+                                <ul>
+                                    <li>✅ 356m² de terreno</li>
+                                    <li>🏭 135m² de galpão</li>
+                                    <li>🌳 221m² de área externa</li>
+                                    <li>🖥️ Escritório</li>
+                                    <li>🚿 Banheiro</li>
+                                    <li>📦 Ideal p/ logística e comércio</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="pacaembu" data-img="Pacaembu(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="valparaiso">
+                                <div class="carousel-container" id="carousel-valparaiso"></div>
+                                <div class="carousel-indicators" id="indicators-valparaiso"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>CHÁCARA NO ENCONTRO VALPARAÍSO</h3>
+                                <div class="price">R$ 2.800.000,00</div>
+                                <ul>
+                                    <li>✅ 9.300m² de área total</li>
+                                    <li>🏠 3 casas</li>
+                                    <li>🐟 Tanque de tilápias</li>
+                                    <li>🎉 Lazer completo</li>
+                                    <li>📑 Escritura registrada</li>
+                                    <li>🌳 Propriedade rústica</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="valparaiso" data-img="ValParaiso(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="greenview">
+                                <div class="carousel-container" id="carousel-greenview"></div>
+                                <div class="carousel-indicators" id="indicators-greenview"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>APARTAMENTO | GREEN VIEW</h3>
+                                <div class="price">R$ 450.000,00</div>
+                                <p>COD: 213</p>
+                                <ul>
+                                    <li>✅ 2 dormitórios (1 suíte)</li>
+                                    <li>🪟 Sacada</li>
+                                    <li>🏢 12º andar</li>
+                                    <li>🪑 Móveis planejados</li>
+                                    <li>🚗 1 vaga de garagem</li>
+                                    <li>🌆 Vista privilegiada</li>
+                                </ul>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="greenview" data-img="GreenView(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="edificio_sineu">
+                                <div class="carousel-container" id="carousel-edificio_sineu"></div>
+                                <div class="carousel-indicators" id="indicators-edificio_sineu"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>APARTAMENTO À VENDA | EDIFÍCIO SINEU – CENTRO</h3>
+                                <div class="price">R$ 270.000,00</div>
+                                <p>COD: 322</p>
+                                <ul>
+                                    <li>✅ 6º andar</li>
+                                    <li>🪑 Móveis planejados</li>
+                                    <li>🏗️ Piso em porcelanato</li>
+                                    <li>✨ Acabamento em gesso e sanca</li>
+                                    <li>🪟 Sacada</li>
+                                    <li>🚗 Vaga de garagem</li>
+                                    <li>📍 Centro – praticidade total</li>
+                                </ul>
+                                <div class="detail-info">📞 Entre em contato para mais informações!</div>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="edificio_sineu" data-img="Edificio_Sineu(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="mont_soleil">
+                                <div class="carousel-container" id="carousel-mont_soleil"></div>
+                                <div class="carousel-indicators" id="indicators-mont_soleil"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>ÚLTIMO ANDAR + VARANDA GOURMET | MONT SOLEIL</h3>
+                                <div class="price">R$ 320.000,00</div>
+                                <ul>
+                                    <li>✅ 50m²</li>
+                                    <li>🏢 17º andar</li>
+                                    <li>🛏️ 2 dormitórios suíte</li>
+                                    <li>🍖 Varanda gourmet</li>
+                                    <li>🔥 Churrasqueira</li>
+                                </ul>
+                                <div class="detail-info">📞 Entre em contato para mais informações!</div>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="mont_soleil" data-img="Mont_Soleil(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="mont_everest">
+                                <div class="carousel-container" id="carousel-mont_everest"></div>
+                                <div class="carousel-indicators" id="indicators-mont_everest"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>MONTE EVEREST | SÃO CARLOS/SP</h3>
+                                <div class="price">R$ 195.000,00</div>
+                                <ul>
+                                    <li>✅ 45m²</li>
+                                    <li>🏢 3º andar</li>
+                                    <li>🛏️ 2 dormitórios</li>
+                                    <li>🏊 Piscina</li>
+                                    <li>🛡️ Portaria 24h</li>
+                                    <li>🏦 Aceita financiamento</li>
+                                </ul>
+                                <div class="detail-info">📞 Entre em contato para mais informações!</div>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="mont_everest" data-img="Mont_Everest(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-carousel" data-group="jardim_paulistano">
+                                <div class="carousel-container" id="carousel-jardim_paulistano"></div>
+                                <div class="carousel-indicators" id="indicators-jardim_paulistano"></div>
+                            </div>
+                            <div class="property-info">
+                                <h3>JARDIM PAULISTANO | SÃO CARLOS/SP</h3>
+                                <div class="price">R$ 180.000,00</div>
+                                <ul>
+                                    <li>✅ 1º andar</li>
+                                    <li>🛏️ 2 dormitórios</li>
+                                    <li>🎓 Próximo USP/UFSCar</li>
+                                    <li>🏊 Piscina</li>
+                                    <li>📈 Ótimo para investimento</li>
+                                </ul>
+                                <div class="detail-info">📞 Entre em contato para mais informações!</div>
+                                <button class="btn btn-secondary btn-fullscreen" data-group="jardim_paulistano" data-img="Jardim_Paulistano(1).jpeg">Ver Mais Imagens</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <button class="carousel-nav-btn next" id="carousel-next" aria-label="Próximo">
@@ -1281,7 +1663,7 @@
                     <a href="#" id="gmail-link" class="social-icon">
                         <i class="far fa-envelope"></i>
                     </a>
-                    <a href="#" id="instagram-link" class="social-icon">
+                    <a href="https://www.instagram.com/habileads/" id="instagram-link" class="social-icon" target="_blank" rel="noreferrer noopener">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
@@ -1297,7 +1679,7 @@
                     <img src="logohabileads.png" alt="HABILEADS" style="height: 40px; margin-right: 10px;">
                     HABILEADS
                 </div>
-                <p>&copy; 2025 HABILEADS - Todos os direitos reservados</p>
+                <p>&copy; 2025 HABILEADS - Feito por <a href="https://www.instagram.com/_samusantana_/" target="_blank" rel="noreferrer noopener">Samuel Santana</a> - Todos os direitos reservados</p>
                 <p class="footer-info">Desde 2021 transformando o mercado imobiliário com habilidade e honestidade</p>
             </div>
         </div>
@@ -1329,7 +1711,6 @@
 
         // Definir grupos de imagens
         const imageGroups = {
-            // Imóveis existentes
             // Novos apartamentos
             apcompleto: generateImageArrayWithPattern('Ap_completo', 15),
             apjardimgilbertoni: generateImageArrayWithPattern('Ap_JardimGilbertoni', 13),
@@ -1355,7 +1736,17 @@
             casamoradas: generateImageArrayWithPattern('Casa_Moradas_I', 11),
             casaparquefehr: generateImageArrayWithPattern('Casa_ParqueFehr', 15),
             casaswisspark: generateImageArrayWithPattern('Casa_SwissPark', 10),
-            sobradocondominioparquefaber: generateImageArrayWithPattern('SOBRADO_CONDOMÍNIOPARQUEFABER_IV', 14)
+            sobradocondominioparquefaber: generateImageArrayWithPattern('SOBRADO_CONDOMÍNIOPARQUEFABER_IV', 14),
+            recantosabia: generateImageArrayWithPattern('RecantoSabia', 1),
+            parque_sabara: generateImageArrayWithPattern('Parque_Sabara', 1),
+            santa_felicia: generateImageArrayWithPattern('Santa_Felicia', 1),
+            pacaembu: generateImageArrayWithPattern('Pacaembu', 1),
+            valparaiso: generateImageArrayWithPattern('ValParaiso', 1),
+            greenview: generateImageArrayWithPattern('GreenView', 1),
+            edificio_sineu: generateImageArrayWithPattern('Edificio_Sineu', 1),
+            mont_soleil: generateImageArrayWithPattern('Mont_Soleil', 1),
+            mont_everest: generateImageArrayWithPattern('Mont_Everest', 1),
+            jardim_paulistano: generateImageArrayWithPattern('Jardim_Paulistano', 1)
         };
 
         let currentImageIndex = 0;
@@ -1381,43 +1772,47 @@
             
             if (!carousel || !prevBtn || !nextBtn) return;
 
-            const cardWidth = 320; // Largura do card
-            const gap = 30;
-            const scrollAmount = cardWidth + gap;
+            const carouselWrapper = carousel.parentElement;
             let currentPosition = 0;
             let autoScrollInterval = null;
             let isPaused = false;
+            const gapFallback = 30;
+
+            function getScrollAmount() {
+                const firstCard = carousel.querySelector('.property-card');
+                if (!firstCard) return 320 + gapFallback;
+                const comp = window.getComputedStyle(carousel);
+                const gap = parseInt(comp.getPropertyValue('gap')) || gapFallback;
+                if (window.innerWidth <= 768) {
+                    return carouselWrapper.clientWidth + gap;
+                }
+                return firstCard.offsetWidth + gap;
+            }
 
             function getMaxScroll() {
-                const wrapper = carousel.parentElement;
-                return carousel.scrollWidth - wrapper.offsetWidth;
+                return Math.max(0, carouselWrapper.scrollWidth - carouselWrapper.clientWidth);
             }
 
             function scrollCarousel(direction) {
                 const maxScroll = getMaxScroll();
-                let newPosition = 0;
-                
+                const scrollAmount = getScrollAmount();
+                let newPosition = carouselWrapper.scrollLeft;
+
                 if (direction === 'next') {
-                    newPosition = currentPosition + scrollAmount;
-                    // Se passou do limite, volta para o início
-                    if (newPosition >= maxScroll) {
-                        newPosition = 0;
-                    }
+                    const nextPos = Math.min(newPosition + scrollAmount, maxScroll);
+                    newPosition = nextPos === newPosition && newPosition >= maxScroll ? 0 : nextPos;
                 } else {
-                    newPosition = currentPosition - scrollAmount;
-                    // Se passou do início, vai para o final
-                    if (newPosition < 0) {
-                        newPosition = maxScroll;
-                    }
+                    const prevPos = Math.max(newPosition - scrollAmount, 0);
+                    newPosition = prevPos === newPosition && newPosition <= 0 ? maxScroll : prevPos;
                 }
-                
+
                 currentPosition = newPosition;
-                carousel.style.transform = `translateX(-${currentPosition}px)`;
+                carouselWrapper.scrollTo({ left: currentPosition, behavior: 'smooth' });
             }
 
             function startAutoScroll() {
                 if (autoScrollInterval) return;
-                
+
                 autoScrollInterval = setInterval(() => {
                     if (!isPaused) {
                         scrollCarousel('next');
@@ -1431,6 +1826,13 @@
                     autoScrollInterval = null;
                 }
             }
+
+            // Recalcula posicionamento ao redimensionar a janela (responsividade)
+            window.addEventListener('resize', () => {
+                const max = getMaxScroll();
+                if (currentPosition > max) currentPosition = Math.max(0, max);
+                carouselWrapper.scrollTo({ left: currentPosition, behavior: 'instant' });
+            });
 
             prevBtn.addEventListener('click', () => {
                 scrollCarousel('prev');
@@ -1447,7 +1849,6 @@
             });
 
             // Pausar auto-scroll ao passar o mouse sobre o carrossel
-            const carouselWrapper = carousel.parentElement;
             carouselWrapper.addEventListener('mouseenter', () => {
                 isPaused = true;
             });
