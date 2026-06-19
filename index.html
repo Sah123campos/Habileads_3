@@ -426,6 +426,10 @@
         .btn-fullscreen {
             font-size: 0.8rem;
             padding: 8px 20px !important;
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            width: 100%;
         }
 
         .price {
@@ -692,6 +696,7 @@
             height: 100%;
             object-fit: cover;
         }
+
 
         .thumbnail:hover {
             transform: scale(1.05);
@@ -1690,6 +1695,18 @@
         <!-- Conteúdo será inserido via JavaScript -->
     </div>
 
+    <!-- VLibras Widget -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
     <script>
         // Função para gerar array de imagens baseado no padrão
         function generateImageArray(prefix, count, extension = 'jpeg') {
@@ -1737,16 +1754,16 @@
             casaparquefehr: generateImageArrayWithPattern('Casa_ParqueFehr', 15),
             casaswisspark: generateImageArrayWithPattern('Casa_SwissPark', 10),
             sobradocondominioparquefaber: generateImageArrayWithPattern('SOBRADO_CONDOMÍNIOPARQUEFABER_IV', 14),
-            recantosabia: generateImageArrayWithPattern('RecantoSabia', 1),
-            parque_sabara: generateImageArrayWithPattern('Parque_Sabara', 1),
-            santa_felicia: generateImageArrayWithPattern('Santa_Felicia', 1),
-            pacaembu: generateImageArrayWithPattern('Pacaembu', 1),
-            valparaiso: generateImageArrayWithPattern('ValParaiso', 1),
-            greenview: generateImageArrayWithPattern('GreenView', 1),
-            edificio_sineu: generateImageArrayWithPattern('Edificio_Sineu', 1),
-            mont_soleil: generateImageArrayWithPattern('Mont_Soleil', 1),
-            mont_everest: generateImageArrayWithPattern('Mont_Everest', 1),
-            jardim_paulistano: generateImageArrayWithPattern('Jardim_Paulistano', 1)
+            recantosabia: generateImageArrayWithPattern('RecantoSabia', 6),
+            parque_sabara: generateImageArrayWithPattern('Parque_Sabara', 34),
+            santa_felicia: generateImageArrayWithPattern('Santa_Felicia', 3),
+            pacaembu: generateImageArrayWithPattern('Pacaembu', 7),
+            valparaiso: generateImageArrayWithPattern('ValParaiso', 14),
+            greenview: generateImageArrayWithPattern('GreenView', 23),
+            edificio_sineu: generateImageArrayWithPattern('Edificio_Sineu', 24),
+            mont_soleil: generateImageArrayWithPattern('Mont_Soleil', 15),
+            mont_everest: generateImageArrayWithPattern('Mont_Everest', 8),
+            jardim_paulistano: generateImageArrayWithPattern('Jardim_Paulistano', 10)
         };
 
         let currentImageIndex = 0;
@@ -1977,9 +1994,12 @@
                 const clickedImg = this.getAttribute('data-img');
                 
                 currentGroup = group;
-                currentImageIndex = imageGroups[group].indexOf(clickedImg);
+                currentImageIndex = imageGroups[group].findIndex(img => img === clickedImg);
+                if (currentImageIndex === -1) {
+                    currentImageIndex = 0;
+                }
                 
-                // Criar galeria no modal
+                // Criar galeria no modal com todas as imagens do grupo selecionado
                 createGalleryModal(group);
                 document.getElementById('modal-fullscreen').classList.add('open');
                 document.body.classList.add('modal-open');
@@ -1989,7 +2009,9 @@
         function createGalleryModal(group) {
             const images = imageGroups[group];
             const modal = document.getElementById('modal-fullscreen');
-            
+            if (!images || images.length === 0 || !modal) return;
+            currentImageIndex = Math.max(0, Math.min(currentImageIndex, images.length - 1));
+
             modal.innerHTML = `
                 <span class="modal-close">&times;</span>
                 <div class="gallery-container">
@@ -2004,13 +2026,9 @@
                         `).join('')}
                     </div>
                     <div class="gallery-nav">
-                        <button class="gallery-prev" aria-label="Anterior">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
+                        <button class="gallery-prev" aria-label="Anterior imagem"><i class="fas fa-chevron-left"></i></button>
                         <span class="gallery-counter">${currentImageIndex + 1} / ${images.length}</span>
-                        <button class="gallery-next" aria-label="Próximo">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+                        <button class="gallery-next" aria-label="Próxima imagem"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
             `;
@@ -2021,7 +2039,9 @@
             const prevBtn = modal.querySelector('.gallery-prev');
             const nextBtn = modal.querySelector('.gallery-next');
 
-            modalClose.addEventListener('click', closeModal);
+            if (modalClose) {
+                modalClose.addEventListener('click', closeModal);
+            }
             
             thumbnails.forEach(thumb => {
                 thumb.addEventListener('click', function() {
@@ -2030,15 +2050,19 @@
                 });
             });
 
-            prevBtn.addEventListener('click', () => {
-                const newIndex = (currentImageIndex - 1 + images.length) % images.length;
-                showImage(newIndex);
-            });
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const newIndex = (currentImageIndex - 1 + images.length) % images.length;
+                    showImage(newIndex);
+                });
+            }
 
-            nextBtn.addEventListener('click', () => {
-                const newIndex = (currentImageIndex + 1) % images.length;
-                showImage(newIndex);
-            });
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const newIndex = (currentImageIndex + 1) % images.length;
+                    showImage(newIndex);
+                });
+            }
 
             // Navegação com teclado
             document.addEventListener('keydown', handleKeyPress);
